@@ -42,12 +42,12 @@ public class ProduitDto {
         this.id = id;
     }
 
-    public String getName() {
+    public String getNom() {
         return nom;
     }
 
-    public void setName(String name) {
-        this.nom = name;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getDescription() {

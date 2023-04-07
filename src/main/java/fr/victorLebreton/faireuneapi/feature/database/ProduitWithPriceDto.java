@@ -9,27 +9,27 @@ import java.util.Objects;
 // Permet de ne pas toucher au code existant en faisant évoluer un produit dans notre code
 public class ProduitWithPriceDto extends ProduitDto{
     // Utilisation de BigDecimal à la place de double (plus secure)
-    private BigDecimal unitPrice;
+    private BigDecimal prixUnitaireHt;
     // Constructeur identique à celui de notre ProduitDto, avec l'ajout du champ unitPrice
-    public ProduitWithPriceDto(Integer id, String name, String description, BigDecimal unitPrice) {
+    public ProduitWithPriceDto(Integer id, String nom, String description, BigDecimal prixUnitaireHt) {
         // Construction de la classe parente avec le mot super() qui prend en paramètre les mêmes que celui du constructeur du parent
-        super(id, name, description);
-        this.unitPrice = unitPrice;
+        super(id, nom, description);
+        this.prixUnitaireHt = prixUnitaireHt;
     }
 
     public ProduitWithPriceDto(Tuple tuple) {
         // Utilisation du constructeur ProduitDto(Tuple tuple)
         super(tuple);
         // On récupère en plus notre champ unitPrice de notre Tuple
-        this.unitPrice = BigDecimal.valueOf((Double) tuple.get(3));
+        this.prixUnitaireHt = BigDecimal.valueOf((Double) tuple.get(3));
     }
 
     public BigDecimal getUnitPrice() {
-        return unitPrice;
+        return prixUnitaireHt;
     }
 
     public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
+        this.prixUnitaireHt = prixUnitaireHt;
     }
 
     // Redéfinition de la méthode equals pour tester les mêmes champs que notre parent avec en plus le test sur le unitPrice
@@ -39,12 +39,12 @@ public class ProduitWithPriceDto extends ProduitDto{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         ProduitWithPriceDto that = (ProduitWithPriceDto) o;
-        return unitPrice.equals(that.unitPrice);
+        return prixUnitaireHt.equals(that.prixUnitaireHt);
     }
 
     // Concatenation du hashcode de notre classe parente en ajoutant notre champ unitPrice
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), unitPrice);
+        return Objects.hash(super.hashCode(), prixUnitaireHt);
     }
 }

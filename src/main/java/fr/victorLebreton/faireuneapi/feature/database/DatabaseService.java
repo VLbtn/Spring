@@ -82,11 +82,11 @@ public class DatabaseService {
         return new ProduitWithPriceDto(result);
     }
 
-    public List<ProduitWithPriceDto> getProductByName(String name) {
-        String request = "select id, nom, description, prix_unitaire_ht from produit where nom LIKE :name";
+    public List<ProduitWithPriceDto> getProductByName(String nom) {
+        String request = "select id, nom, description, prix_unitaire_ht from produit where nom LIKE :nom";
         Query query = entityManager.createNativeQuery(request, Tuple.class)
                 // Concaténation de % au début et à la fin de notre nom pour indiquer qu'il peut être n'importe où dans notre champ
-                .setParameter("nom", "%"+name+"%");
+                .setParameter("nom", "%"+nom+"%");
         List<Tuple> resultList = (List<Tuple>) query.getResultList();
         // IDEM méthode getListProduct, sauf qu'on va créer des ProduitWithPriceDto pour stocker le unit_price de notre requête
         return resultList.stream().map(ProduitWithPriceDto::new).toList();
@@ -99,8 +99,8 @@ public class DatabaseService {
         return productRepository.findById(id).orElse(null);
     }
 
-    public List<Produit> getProductEntityByName(String name) {
-        return productRepository.findByNameContainingIgnoreCase(name);
+    public List<Produit> getProductEntityByName(String nom) {
+        return productRepository.findByNameContainingIgnoreCase(nom);
     }
 
     public List<ProduitWithPriceDto> getProductByCategory(String categoryName) {
@@ -114,7 +114,7 @@ public class DatabaseService {
         return resultList.stream().map(ProduitWithPriceDto::new).toList();
     }
 
-    public List<Produit> getProductEntityByCategoryName(String name) {
-        return productRepository.findByCategoryName(name);
+    public List<Produit> getProductEntityByCategoryName(String nom) {
+        return productRepository.findByCategoryName(nom);
     }
 }

@@ -28,18 +28,18 @@ public class Produit {
     @Column(name = "prix_unitaire_ht")
     private Double prixUnitaireHt;
 
-    //@Column(name = "category_id")
-    //private Integer categoryId;
+    @Column(name = "categorie")
+    private Integer categorie;
 
-    //@ManyToOne
-    //@JoinColumn(name = "id", updatable = false, insertable = false)
-    //private Categorie categorie;
+    @ManyToOne
+    @JoinColumn(name = "categorie", updatable = false, insertable = false)
+    private Category category;
 
-    public String getName() {
+    public String getNom() {
         return nom;
     }
 
-    public void setName(String nom) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
 

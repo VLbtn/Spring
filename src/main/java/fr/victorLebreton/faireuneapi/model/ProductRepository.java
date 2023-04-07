@@ -1,6 +1,5 @@
 package fr.victorLebreton.faireuneapi.model;
 
-import fr.victorLebreton.faireuneapi.feature.classes.Produit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -21,11 +20,11 @@ public interface ProductRepository extends JpaRepository<Produit, Integer> {
     // Name : nom de l'attribut dans la classe Produit
     // Containing : Mot clé permettant de dire comment écrire le where :: ici name = '%iphone%'
     // IgnoreCase : Recherche sans tenir compte de la casse
-    List<Produit> findByNameContainingIgnoreCase(String name);
+    List<Produit> findByNameContainingIgnoreCase(String nom);
 
     // Utilisation d'une requête écrite en JPQL, et pas en SQL natif
     // On remplace juste le nom des tables par le nom des classe contenant nos entités
     // On remplace le nom des champs de notre BDD par le nom des attributs
-    @Query("select p from Produit p where p.categorie.nom = ?1")
+    @Query("select p from Produit p where p.categorie = ?1")
     List<Produit> findByCategoryName(String categoryName);
 }
