@@ -1,4 +1,4 @@
-package fr.victorLebreton.faireuneapi.feature;
+package fr.victorLebreton.faireuneapi.feature.hello;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
